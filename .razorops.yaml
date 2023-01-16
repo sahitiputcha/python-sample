@@ -1,5 +1,5 @@
 tasks:
-  rails-ruby-sonar-job:
+  pyhton-sonar-job:
     runner: sonarsource/sonar-scanner-cli
     steps:
    
