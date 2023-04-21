@@ -1,15 +1,25 @@
 tasks:
-  pyhton-sonar-job:
-    runner: sonarsource/sonar-scanner-cli
+
+  unit-test:
+
+    runner: razorci/openjdk:11-buster
+
     steps:
-   
-    - checkout    
+
+    - checkout
+
     - commands:
+
       - |
-       sonar-scanner \
-        -Dsonar.projectKey=python-app \
-        -Dsonar.sources=. \
-        -Dsonar.host.url=http://65.2.9.93:9000 \
-        -Dsonar.login=1bf58d2febae4a22923ce11d284d4d86f48d3f3f
 
+        mvn clean package
 
+           ls -a
+
+    - docker/build:
+
+         image: razoropscode.jfrog.io/docker/spring
+
+         push: true 
+
+         tags: ["latest-v1"]
