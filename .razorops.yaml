@@ -26,5 +26,5 @@ tasks:
 
            chmod +x codecov
 
-           ./codecov -t ${CODECOV_TOKEN}   
+           ./codecov -t ${75ce23ea-0e33-4932-8c74-169e9fbe978b}   
 
