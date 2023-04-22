@@ -1,8 +1,6 @@
 tasks:
 
-  unit-test:
-
-    runner: razorci/openjdk:11-buster
+  build-deps:
 
     steps:
 
@@ -10,17 +8,22 @@ tasks:
 
     - commands:
 
-      - |
+    - run: pip3 install pytest
 
-        mvn clean package
+    - run: pip3 freeze --local > requirements.txt
 
-           ls -a
+    - run: pip3 install pytest-cov
 
-    - docker/build:
+    - run: pytest --cov app/
 
-         image: razoropscode.jfrog.io/docker/spring
+    - run: pytest --cov app/ --cov-report=html:test-coverage.html
 
-         push: true 
+    - codecov/upload 
 
-         tags: ["latest-v1"]
+    - run: |
 
+           curl -Os https://uploader.codecov.io/latest/linux/codecov
+
+           chmod +x codecov
+
+           ./codecov -t ${CODECOV_TOKEN}   
