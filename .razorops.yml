@@ -16,3 +16,4 @@ tasks:
         paths:
         - /usr/local/lib/python3.9/site-packages
     - reports/junit: test-reports/*.xml
+    
