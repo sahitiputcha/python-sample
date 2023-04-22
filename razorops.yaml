@@ -1,0 +1,29 @@
+tasks:
+
+  build-deps:
+
+    steps:
+
+    - checkout
+
+    - commands:
+
+    - run: pip3 install pytest
+
+    - run: pip3 freeze --local > requirements.txt
+
+    - run: pip3 install pytest-cov
+
+    - run: pytest --cov app/
+
+    - run: pytest --cov app/ --cov-report=html:test-coverage.html
+
+    - codecov/upload 
+
+    - run: |
+
+           curl -Os https://uploader.codecov.io/latest/windows/codecov
+
+           chmod +x codecov
+
+           ./codecov -t ${CODECOV_TOKEN}   
