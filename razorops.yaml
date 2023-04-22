@@ -20,9 +20,7 @@ tasks:
 
     - codecov/upload 
 
-    - run: |
-
-           curl -Os https://uploader.codecov.io/latest/windows/codecov
+    - run: curl -Os https://uploader.codecov.io/latest/windows/codecov
 
            chmod +x codecov
 
