@@ -2,7 +2,7 @@ tasks:
 
   unit-test:
 
-    runner: razorci/openjdk:11-buster
+    runner: razorci/python:3.9
 
     steps:
 
@@ -12,9 +12,10 @@ tasks:
 
       - |
 
-        mvn clean package
-
-           ls -a
+      - python -c 'import site; print(site.getsitepackages())'
+      - pip install -r requirements.txt
+    - commands:
+      - python test.py
 
     - docker/build:
 
